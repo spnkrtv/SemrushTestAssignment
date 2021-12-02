@@ -44,12 +44,9 @@ Now the tree looks like this:
       └── application
 ```
 
-## Step 3. Deploy an app
+## Step 3. Compose an app
 
-Get the app to start deploying.
-
-Place ***application.py*** file into ***quickstart_docker/application*** catalog
-
+Write down the following code in any text editor and name it application.py
 ```
 import http.server
 import socketserver
@@ -59,6 +56,9 @@ httpd = socketserver.TCPServer(("", PORT), Handler)
 print("serving at port", PORT)
 httpd.serve_forever()
 ```
+
+Place ***application.py*** file into ***quickstart_docker/application*** folder
+
 The app needs its environment, so it needs Python. And Python needs operational system. Dockerhub has all of these, so use it.
 
 First, place Dockerfile file into ***quickstart_docker/docker/application*** directory with following containment:
@@ -82,7 +82,8 @@ CMD ["python", "/app/application.py"]   #5
 Next, to make a Dockerfile and ExampleApp easy for search, type at the terminal:
 
 ```
-docker build . -f-docker/application/Dockerfile -t exampleapp
+docker build . -f docker/application/Dockerfile -t exampleapp -
+
 ```
 
 To learn more about Docker imaging [follow here](https://docs.docker.com/engine/reference/builder/).
