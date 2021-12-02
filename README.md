@@ -1,6 +1,6 @@
 # How to make an app image and deploy it
 
-Goal is to learn how to prepare [Docker](https://www.docker.com/) environment for interacting with apps and run a container with the ExampleApp using [Kubernetes](https://kubernetes.io) cluster. 
+Goal is to learn how to prepare [Docker](https://www.docker.com/) environment for interacting with apps, built an image and run it as a container with the ExampleApp using [Kubernetes](https://kubernetes.io) cluster. 
 
 ## What is Docker?
 
@@ -12,7 +12,9 @@ Docker provides the ability to packing, testing, deploying and running an applic
 
 ## What is Kubernetes?
 
-Kubernetes is an open-source platform for managing and configuring containers. Kubernetes brings a framework to run distributed systems and helps with scaling and failover for an application, provides deployment patterns and so on. To learn more about Kubernetes [follow here](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/).
+Kubernetes is an open-source platform for managing and configuring containers. Kubernetes brings a framework to run distributed systems and helps with scaling and failover for an application, provides deployment patterns and so on. To start a Kubernetes single-node cluster Docker Desktop check the box **Enable Kubernetes** in Settings of Docker.
+
+To learn more about Kubernetes [follow here](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/).
 
 ## Step 1. Get the Docker
 
@@ -20,13 +22,11 @@ Kubernetes is an open-source platform for managing and configuring containers. K
 
 Have a look at step-by-step [tutorial](https://www.docker.com/docker-desktop/getting-started-for-mac) to customise it.
 
-## Step 2. Make a directory
-
-Every project needs a structure.
+## Step 2. Make a directory structure
 
 First, create a root directory **quickstart_docker**. 
 
-Next, subdirectories **application** and **docker** inside of it. Put **application** in the **docker** folder. 
+Next, create subdirectories **application** and **docker** inside of it. Put **application** in the **docker** folder. 
 
 To do this, type at the command line:
 ```
@@ -46,7 +46,7 @@ Now the tree looks like this:
 
 ## Step 3. Compose an app
 
-Write down the following code in any text editor and name it application.py
+Write down the following code in any text editor and name it application.py. This app will simply recieve requests on 8000 port.
 ```
 import http.server
 import socketserver
@@ -56,12 +56,13 @@ httpd = socketserver.TCPServer(("", PORT), Handler)
 print("serving at port", PORT)
 httpd.serve_forever()
 ```
+Place **application.py** file into **quickstart_docker/application** folder
 
-Place ***application.py*** file into ***quickstart_docker/application*** folder
+## Step 4. Create a Dockerfile
 
-The app needs its environment, so it needs Python. And Python needs operational system. Dockerhub has all of these, so use it.
+Dockerfile is a set of instructions for building a Docker image. A Docker image is a file that allow to execute code in a Docker container. 
 
-First, place Dockerfile file into ***quickstart_docker/docker/application*** directory with following containment:
+First, create Dockerfile into **quickstart_docker/docker/application** directory with following containment:
 
 ```
 
@@ -79,21 +80,36 @@ CMD ["python", "/app/application.py"]   #5
 
 ```
 
-Next, to make a Dockerfile and ExampleApp easy for search, type at the terminal:
+## Step 5. Make a Docker image
+
+Next step is to create a Docker image by using **docker build** command.
+
+To do this, type at the command line:
 
 ```
-docker build . -f docker/application/Dockerfile -t exampleapp -
+docker build . -f docker/application/Dockerfile -t exampleapp
 
 ```
 
-To learn more about Docker imaging [follow here](https://docs.docker.com/engine/reference/builder/).
+Where **.-** is a working directory, **-f docker/application/Dockerfile** is the Dockerfile itself,  **-t exampleapp** is a name for searching.
 
-Check docker images list:
+Check Docker images list, to do this, type at the command line:
+
+```
+docker images
+```
 
 | REPOSITORY | TAG    | IMAGE ID     | CREATED       | SIZE   |
 |------------|--------|--------------|---------------|--------|
 | exampleapp | latest | 83wse0edc28a | 2 seconds ago | 153 MB |
 | python     | 3.6    | 05sob8636w3f | 6 weeks ago   | 153 MB |
 
+To learn more about Docker imaging [follow here](https://docs.docker.com/engine/reference/builder/).
 
-Docker image should be placed in repository
+## Step 6. Run the container
+
+Run the Exampleapp container by typing at the command line:
+
+```
+docker run exampleapp
+```
