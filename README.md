@@ -48,7 +48,7 @@ The project structure become as follows:
 
 Prepare an app to operate with. This example app is a simple web server written in Python and it will be executable in future container.
 
-Put the following code in **quickstart_docker/application/application.py** file. 
+Put the following code in **quickstart_docker/application/application.py** file:
 
 ```
 import http.server
@@ -89,7 +89,6 @@ To do this, type at the command line:
 
 ```
 docker build . -f docker/application/Dockerfile -t exampleapp
-
 ```
 
 Where **.** is a working directory, **-f docker/application/Dockerfile** is the Dockerfile itself,  **-t exampleapp** is the image name.
