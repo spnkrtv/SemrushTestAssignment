@@ -1,22 +1,22 @@
 # How to make and run an app container using Docker
 
-For a perspective of Nordlys infrastructure migration to Kubernetes present guide gives a short overview of the technology and gives an example of running an application in Docker ecosystem.
+For a perspective of Nordlys infrastructure migration to Kubernetes this guide gives a short overview of the technology and gives an example of running an application in the Docker ecosystem.
 
 ## What is Docker?
 
-Docker is a platform for developing, running and organizing applications. The core advantage of Docker is reducing time between program development and delivery. By using Docker a developer is able to ship, test and delivery code quickly without using external infrastructure. 
+[Docker](https://www.docker.com/) is a platform for developing, running and organizing applications. The core advantage of Docker is reducing time between program development and delivery. By using Docker a developer is able to ship, test and deliver code quickly without using an external infrastructure. 
 
-Docker provides the ability to isolate an application in an environment called a container. Container used along with virtual machines which is and abstraction of actual hardware turning one server into many servers. Each virtual machine provides an operating system and necessary libraries.
+Docker provides the ability to isolate an application in an environment called a container. A container is used along with virtual machines which are an abstraction of actual hardware turning one server into many servers. Each virtual machine provides an operating system and necessary libraries.
 
 ![docker and vms](https://www.docker.com/sites/default/files/d8/2018-11/docker-containerized-and-vm-transparent-bg.png)
 
 ## What is Kubernetes?
 
-Kubernetes is an open-source platform for managing and configuring containers. Kubernetes brings a framework to run distributed systems and helps with scaling and failover for an application, provides deployment patterns and so on.
+Kubernetes is an open-source platform for managing and configuring containers. Kubernetes brings a framework to run distributed systems and helps with scaling and failover for an application, provides deployment patterns etc.
 
-To start a Kubernetes single-node cluster check the box **Enable Kubernetes** in Settings of Docker.
+To start a Kubernetes single-node cluster, check the box **Enable Kubernetes** in Settings of Docker.
 
-To learn more about Kubernetes [follow here](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/).
+To learn more about Kubernetes, [follow here](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/).
 
 ## Step 1. Get the Docker
 
@@ -46,7 +46,7 @@ The project structure become as follows:
 
 ## Step 3. Compose an app
 
-Prepare an app to operate with. This example app is a simple web server written in Python and it will be executable in future container.
+Prepare an app to operate with. This example app is a simple web server written in Python and it will be executable in a future container.
 
 Put the following code in **quickstart_docker/application/application.py** file:
 
@@ -62,9 +62,9 @@ httpd.serve_forever()
 
 ## Step 4. Create a Dockerfile
 
-Dockerfile is a set of instructions for building a Docker image. A Docker image is a file that allow to execute code in a Docker container. 
+Dockerfile is a set of instructions for building a Docker image. A Docker image is a file that allows executing code in a Docker container. 
 
-Put the following code in Dockerfile into **quickstart_docker/docker/application/Dockerfile**:
+Put the following code in Dockerfile into **quickstart_docker/docker/application/Dockerfile** file:
 
 ```
 FROM python:3.5                         #1 
@@ -75,15 +75,15 @@ CMD ["python", "/app/application.py"]   #5
 ```
 
 1. Use Python from a public [repository](https://docs.docker.com/docker-hub/repos/)
-2. Set the working directory to /app
-3. Copy the 'application' directory contents into the container at /app
+2. Set the working directory to **/app**
+3. Copy the **application** directory contents into the container at /app
 4. Make port 8000 available to the world outside this container
-5. Execute 'python /app/application.py' in the working directory when container launches
+5. Execute **python /app/application.py** in the working directory when the container launches
 
 
 ## Step 5. Make a Docker image
 
-Next step is to create a Docker image by using **docker build** command.
+The next step is to create a Docker image by using **docker build** command.
 
 To do this, type at the command line:
 
@@ -104,11 +104,11 @@ docker images
 | exampleapp | latest | 83wse0edc28a | 2 seconds ago | 153 MB |
 | python     | 3.6    | 05sob8636w3f | 6 weeks ago   | 153 MB |
 
-To learn more about Docker imaging [follow here](https://docs.docker.com/engine/reference/builder/).
+To learn more about Docker imaging, [follow here](https://docs.docker.com/engine/reference/builder/).
 
 ## Step 6. Run the container
 
-Final step is to check running container.
+The final step is to check the running container.
 
 Run the Exampleapp container by typing at the command line:
 
