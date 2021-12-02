@@ -1,6 +1,18 @@
 # How to make an app image and deploy it
 
-Goal is to run a container with the ExampleApp in the [Kubernetes](https://kubernetes.io/docs/home/) cluster.
+Goal is to learn how to prepare [Docker](https://www.docker.com/) environment for interacting with apps and run a container with the ExampleApp using [Kubernetes](https://kubernetes.io) cluster. 
+
+## What is Docker?
+
+Docker is an open platform for developing, running and organize applications. The core advantage of Docker is reducing time between program developing and running it in production. By using Docker developer has a possibility for shipping, testing, and deploying code quickly without using external infrastructure.
+
+Docker provides the ability to packing, testing, deploying and running an application in a loosely isolated environment called a container. Container used along with virtual machines which is and abstraction of actual hardware turning one server into many servers. Each virtual machine provides an operating system and necessary libraries.
+
+![docker and vms](https://www.docker.com/sites/default/files/d8/2018-11/docker-containerized-and-vm-transparent-bg.png)
+
+## What is Kubernetes?
+
+Kubernetes is an open-source platform for managing and configuring containers. Kubernetes brings a framework to run distributed systems and helps with scaling and failover for an application, provides deployment patterns and so on. To learn more about Kubernetes [follow here](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/).
 
 ## Step 1. Get the Docker
 
@@ -12,9 +24,9 @@ Have a look at step-by-step [tutorial](https://www.docker.com/docker-desktop/get
 
 Every project needs a structure.
 
-First, create a root directory ***quickstart_docker***. 
+First, create a root directory **quickstart_docker**. 
 
-Next, subdirectories ***application*** and ***docker*** inside of it. Put ***application*** in the ***docker*** folder. 
+Next, subdirectories **application** and **docker** inside of it. Put **application** in the **docker** folder. 
 
 To do this, type at the command line:
 ```
@@ -52,16 +64,19 @@ The app needs its environment, so it needs Python. And Python needs operational 
 First, place Dockerfile file into ***quickstart_docker/docker/application*** directory with following containment:
 
 ```
-# Use base image from the registry
-FROM python:3.5
-# Set the working directory to /app
-WORKDIR /app
-# Copy the 'application' directory contents into the container at /app
-COPY ./application /app
-# Make port 8000 available to the world outside this container
-EXPOSE 8000
-# Execute 'python /app/application.py' when container launches
-CMD ["python", "/app/application.py"]
+
+FROM python:3.5                         #1 
+WORKDIR /app                            #2 
+COPY ./application /app                 #3
+EXPOSE 8000                             #4
+CMD ["python", "/app/application.py"]   #5
+
+#1 Use base image from the registry
+#2 Set the working directory to /app
+#3 Copy the 'application' directory contents into the container at /app
+#4 Make port 8000 available to the world outside this container
+#5 Execute 'python /app/application.py' when container launches
+
 ```
 
 Next, to make a Dockerfile and ExampleApp easy for search, type at the terminal:
