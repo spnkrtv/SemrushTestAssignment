@@ -10,8 +10,6 @@ Docker provides the ability to packing, testing, deploying and running an applic
 
 ![docker and vms](https://www.docker.com/sites/default/files/d8/2018-11/docker-containerized-and-vm-transparent-bg.png)
 
-*www.docker.com*
-
 ## What is Kubernetes?
 
 Kubernetes is an open-source platform for managing and configuring containers. Kubernetes brings a framework to run distributed systems and helps with scaling and failover for an application, provides deployment patterns and so on.
@@ -50,7 +48,7 @@ Now the tree looks like this:
 
 ## Step 3. Compose an app
 
-Write down the following code in any text editor and name it **application.py**. This app will simply recieve requests on 8000 port.
+Prepare an app to operate with. Write down the following code in any text editor and name it **application.py**. This app will simply recieve requests on 8000 port.
 
 ```
 import http.server
@@ -99,7 +97,7 @@ docker build . -f docker/application/Dockerfile -t exampleapp
 
 Where **.** is a working directory, **-f docker/application/Dockerfile** is the Dockerfile itself,  **-t exampleapp** is a name for searching.
 
-Check Docker images list, to do this, type at the command line:
+Check Docker images list. Type at the command line:
 
 ```
 docker images
@@ -114,8 +112,12 @@ To learn more about Docker imaging [follow here](https://docs.docker.com/engine/
 
 ## Step 6. Run the container
 
+Final step is to check running container.
+
 Run the Exampleapp container by typing at the command line:
 
 ```
 docker run exampleapp
 ```
+
+[Explore](https://docs.docker.com/) some more features of Docker if necessary. 
