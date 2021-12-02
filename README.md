@@ -1,6 +1,6 @@
 # How to make and run an app container using Docker
 
-For a perspective of Nordlys infrastructure migration to Kubernetes that guide give a short overview of the technology and gives an example of running an application in Docker ecosystem.
+For a perspective of Nordlys infrastructure migration to Kubernetes present guide gives a short overview of the technology and gives an example of running an application in Docker ecosystem.
 
 ## What is Docker?
 
