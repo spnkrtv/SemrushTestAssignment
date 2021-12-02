@@ -1,4 +1,4 @@
-# How to make an app image and deploy it
+# How to make and run an app container using Docker
 
 Goal is to learn how to prepare [Docker](https://www.docker.com/) environment for interacting with apps, built an image and run it as a container with the ExampleApp using [Kubernetes](https://kubernetes.io) cluster. 
 
@@ -10,17 +10,21 @@ Docker provides the ability to packing, testing, deploying and running an applic
 
 ![docker and vms](https://www.docker.com/sites/default/files/d8/2018-11/docker-containerized-and-vm-transparent-bg.png)
 
+*www.docker.com*
+
 ## What is Kubernetes?
 
-Kubernetes is an open-source platform for managing and configuring containers. Kubernetes brings a framework to run distributed systems and helps with scaling and failover for an application, provides deployment patterns and so on. To start a Kubernetes single-node cluster Docker Desktop check the box **Enable Kubernetes** in Settings of Docker.
+Kubernetes is an open-source platform for managing and configuring containers. Kubernetes brings a framework to run distributed systems and helps with scaling and failover for an application, provides deployment patterns and so on.
+
+To start a Kubernetes single-node cluster check the box **Enable Kubernetes** in Settings of Docker.
 
 To learn more about Kubernetes [follow here](https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/).
 
 ## Step 1. Get the Docker
 
-[Download](https://www.docker.com/products/docker-desktop) the latest Docker release and install it
+[Download](https://www.docker.com/products/docker-desktop) the latest Docker release and install it.
 
-Have a look at step-by-step [tutorial](https://www.docker.com/docker-desktop/getting-started-for-mac) to customise it.
+Have a look at step-by-step tutorial to customise it for [Mac](https://www.docker.com/docker-desktop/getting-started-for-mac) and [Windows](https://www.docker.com/docker-desktop/getting-started-for-windows).
 
 ## Step 2. Make a directory structure
 
@@ -46,7 +50,8 @@ Now the tree looks like this:
 
 ## Step 3. Compose an app
 
-Write down the following code in any text editor and name it application.py. This app will simply recieve requests on 8000 port.
+Write down the following code in any text editor and name it **application.py**. This app will simply recieve requests on 8000 port.
+
 ```
 import http.server
 import socketserver
@@ -56,7 +61,8 @@ httpd = socketserver.TCPServer(("", PORT), Handler)
 print("serving at port", PORT)
 httpd.serve_forever()
 ```
-Place **application.py** file into **quickstart_docker/application** folder
+
+Place **application.py** file into **quickstart_docker/application** folder.
 
 ## Step 4. Create a Dockerfile
 
@@ -91,7 +97,7 @@ docker build . -f docker/application/Dockerfile -t exampleapp
 
 ```
 
-Where **.-** is a working directory, **-f docker/application/Dockerfile** is the Dockerfile itself,  **-t exampleapp** is a name for searching.
+Where **.** is a working directory, **-f docker/application/Dockerfile** is the Dockerfile itself,  **-t exampleapp** is a name for searching.
 
 Check Docker images list, to do this, type at the command line:
 
