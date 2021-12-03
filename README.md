@@ -46,7 +46,7 @@ The project structure become as follows:
 
 ## Step 3. Compose an app
 
-Prepare an app to operate with. This example app is a simple web server written in Python. The app it will be executable in a future container.
+Prepare an app to operate with. This example app is a simple web server written in Python. The app it will be executable in a container.
 
 Put the following code into `quickstart_docker/application/application.py` file:
 
